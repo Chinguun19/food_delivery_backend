@@ -14,3 +14,10 @@ foodRouter.post('/', async (req: Request, res: Response) => {
         })
     
     });
+
+foodRouter.get('/', async (req: Request, res: Response) => {
+   const products = await FoodModel.find();
+   console.log(products)
+   res.json(products)
+
+})
