@@ -16,8 +16,13 @@ foodRouter.post('/', async (req: Request, res: Response) => {
     });
 
 foodRouter.get('/', async (req: Request, res: Response) => {
-   const products = await FoodModel.find();
+   const products = await FoodModel.find({}).populate('category');
    console.log(products)
    res.json(products)
 
+})
+foodRouter.get('/:_id', async (req: Request, res: Response) => {
+    const { _id } = req.params
+    const product = await FoodModel.findById(_id);
+    res.json(product)
 })

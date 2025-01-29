@@ -6,7 +6,11 @@ export const FOOD_SCHEMA = new mongoose.Schema({
     foodName: String,
     price: Number,
     image: String,
-    ingredients: String,
+    ingredients: String,    
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: FoodCategoryModel                          
+    }
 
 },
 {
