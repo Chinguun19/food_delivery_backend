@@ -1,24 +1,22 @@
-import { ObjectId } from "mongodb"
-import mongoose, { Schema } from "mongoose"
-import { FoodCategoryModel } from "./food-category"
+import mongoose, { Schema } from "mongoose";
 
-export const FOOD_SCHEMA = new mongoose.Schema({
-    foodName: String,
-    price: Number,
-    image: String,
-    ingredients: String,    
+export const FOOD_SCHEMA = new mongoose.Schema(
+  {
+    foodName: { type: String, required: true },
+    price: { type: Number, required: true },
+    image: { type: String },
+    ingredients: { type: String },
     category: {
-        type: Schema.Types.ObjectId,
-        ref: FoodCategoryModel                          
-    }
+      type: Schema.Types.ObjectId,
+      ref: "FoodCategory", // Use the correct model name as a string
+      required: true,
+    },
+  },
+  {
+    timestamps: true, // Adds createdAt and updatedAt fields
+  }
+);
 
-},
-{
-    timestamps: true
-}
-)
-export const FoodModel = mongoose.model(
-    'Food',
-    FOOD_SCHEMA,
-    'food'
-)
+export const FoodModel = mongoose.model("Food", FOOD_SCHEMA, "food");
+
+
